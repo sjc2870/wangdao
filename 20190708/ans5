@@ -1,0 +1,5 @@
+C++提供了几种智能指针，其各自的特点是什么？
+	3种。unique_ptr,shared_ptr,weak_ptr
+	unique_ptr的引用计数只能为1，不能进行复制或赋值操作，若非要进行复制或者赋值，需要把指针通过std::move()变为一个右值，再赋值给一个unique_ptr
+	shared_ptr允许多个shared_ptr指向同一个对象，复制或赋值操作会导致引用计数+1，如果引用计数变为0，会释放资源。
+	weak_ptr与shared_ptr配合使用，指向shared_ptr指向的对象，不会增加引用计数，没有访问资源的接口，只知道指向的对象是否存活，若想访问资源，必须通过lock提升为shared_ptr再进行访问。
